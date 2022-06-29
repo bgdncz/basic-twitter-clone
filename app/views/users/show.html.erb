@@ -27,6 +27,16 @@
   <% end %>
 </ul><br>
 
+<%= form_with url: follow_user_path(@user) do |form| %>
+  <div>
+    <p>Follow <%= form.collection_select :new_follow_id, @user.not_following, :id, :to_s %></p>
+  </div>
+  <div>
+    <%= form.submit "Add" %>
+  </div>
+<% end %>
+<br>
+
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>

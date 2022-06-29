@@ -11,4 +11,8 @@ class User < ApplicationRecord
     def to_s
         "#{self.name} (@#{self.username})"
     end
+
+    def not_following
+        User.all.reject {|u| u == self or u.followers.include? self}
+    end
 end

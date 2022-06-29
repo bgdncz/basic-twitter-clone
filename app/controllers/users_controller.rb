@@ -57,6 +57,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow
+    # provided by rails to set @user to the current user (id in url)
+    set_user
+    new_follow = User.find(params[:new_follow_id]) # form parameter
+    new_follow.followers << @user
+    redirect_to user_path(@user)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
