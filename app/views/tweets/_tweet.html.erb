@@ -6,7 +6,7 @@
 
   <p>
     <strong>User:</strong>
-    <%= tweet.user_id %>
+    <%= link_to tweet.user.to_s, user_path(tweet.user) %>
   </p>
 
 </div>
