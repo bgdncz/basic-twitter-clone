@@ -5,6 +5,9 @@ class User < ApplicationRecord
     has_many :followeds, through: :active_relationships, source: :followed
     has_many :followers, through: :passive_relationships, source: :follower
 
+    validates :name, presence: true
+    validates :username, presence: true, uniqueness: true
+
     def to_s
         "#{self.name} (@#{self.username})"
     end
