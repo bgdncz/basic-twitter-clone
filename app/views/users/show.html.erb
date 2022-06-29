@@ -2,6 +2,31 @@
 
 <%= render @user %>
 
+<strong>Followers:</strong><br>
+<ul>
+  <% @user.followers.each do |follower| %>
+    <li><%= link_to follower.to_s, user_path(follower) %></li>
+  <% end %>
+</ul><br>
+<strong>Following:</strong><br>
+<ul>
+  <% @user.followeds.each do |followed| %>
+    <li><%= link_to followed.to_s, user_path(followed) %></li>
+  <% end %>
+</ul><br>
+
+<strong>Tweets:</strong><br>
+<ul>
+  <% @user.tweets.each do |tweet| %>
+    <li><%= tweet.content %></li>
+  <% end %>
+  <% @user.followeds.each do |follower| %>
+    <% follower.tweets.each do |tweet| %>
+      <li><%= tweet.content %></li>
+    <% end %>
+  <% end %>
+</ul><br>
+
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
